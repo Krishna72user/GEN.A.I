@@ -1,4 +1,5 @@
-GEN1.A.I is a console base virtual voice ai assistant. Read the READ.md carefully before
+<> Documentation : 
+GEN1.A.I is a console base virtual voice ai assistant. Read the documentation carefully before
 using the A.I .
 
 * Limitation:
@@ -16,3 +17,5 @@ using the A.I .
 3> The outputs will shown in "Output.txt".
 4> The communication history will saved in "History.txt" with current date and time.
 5> For explaning outputs the text communication mode is recommended.
+
+
