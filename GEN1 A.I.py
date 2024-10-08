@@ -44,9 +44,9 @@ def voice_response_loop():
         hours = time.strftime("%H",lc)
         mins = time.strftime("%M",lc)
         text = (f"Sir its {hours}hours and {mins}minutes. ")
-        speaker.Speak(f"sir its {hours}hours and {mins}minutes. ")
         with open("Output.txt","w") as f:
             f.write("Output: "+ text)
+        speaker.Speak(f"sir its {hours}hours and {mins}minutes. ")
         with open("History.txt","a") as f:
             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
      elif "what is today's date" in query.lower() or "today's date" in query.lower() or"date" in query.lower():
@@ -55,22 +55,19 @@ def voice_response_loop():
         month = time.strftime("%m",lc)
         day = time.strftime("%d",lc)
         text = (f"Sir the date is {day}-{month}-{year}.")
-        speaker.Speak(f"sir the date is {day} {month} {year} ")
         with open("Output.txt","w") as f:
             f.write("Output: "+ text)
+        speaker.Speak(f"sir the date is {day} {month} {year} ")
         with open("History.txt","a") as f:
             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
      else:
         text = (gem.query(query))
-        speaker.Speak(gem.query(query))
         with open("Output.txt","w") as f:
             f.write("Output: "+ text)
+        speaker.Speak(gem.query(query))
         with open("History.txt","a") as f:
              f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
-        with open("History.txt","a") as f:
-            f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
- with open("History.txt","a") as f:
-            f.write("Session Ended.")
+        
  speaker.Speak("Thank you for using me sir let me know if you need further information")
 def text_response_loop():
  date = time.strftime("%d-%m-%Y")
@@ -124,9 +121,13 @@ if __name__=="__main__":
    if voit =="voice":
       speaker.Speak("Hello I am gen1 A I how can i help you")
       voice_response_loop()
+      with open("History.txt","a") as f:
+            f.write("Session Ended.")
    elif voit =="text":
        print("Hello i am GEN1.A.I how can i help you?")
        text_response_loop()
+       with open("History.txt","a") as f:
+            f.write("Session Ended.")
    else:
       print("Invalid input.")
    
