@@ -34,6 +34,8 @@ def voice_response_loop():
 
     for task in lstweb:
         if (f"open {task[0]}") in query.lower():
+            with open("Output.txt","w") as f:
+                f.write(f"Output: Opening {task[0]} sir.")
             speaker.Speak(f"Opening {task[0]} sir")
             webbrowser.open(task[1])
             opened = True
@@ -62,12 +64,13 @@ def voice_response_loop():
             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
      else:
         text = (gem.query(query))
+        if "." in text:
+            imptext = text.replace(".",".\n")
         with open("Output.txt","w") as f:
-            f.write("Output: "+ text)
+            f.write("Output: "+ imptext)
         speaker.Speak(gem.query(query))
         with open("History.txt","a") as f:
-             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
-        
+             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+imptext+"\n")      
  speaker.Speak("Thank you for using me sir let me know if you need further information")
 def text_response_loop():
  date = time.strftime("%d-%m-%Y")
@@ -81,7 +84,8 @@ def text_response_loop():
 
     for task in lstweb:
         if (f"open {task[0]}") in query.lower():
-            print(f"Opening {task[0]} sir")
+            with open("Output.txt","w") as f:
+                f.write(f"Output: Opening {task[0]} sir.")
             webbrowser.open(task[1])
             opened = True
             break
@@ -107,14 +111,14 @@ def text_response_loop():
             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
      else:
         text = (gem.query(query))
+        if "." in text:
+            imptext = text.replace(".",".\n")
         with open("Output.txt","w") as f:
-            f.write("Output: "+ text)
+            f.write("Output: "+ imptext)
         with open("History.txt","a") as f:
-             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
+             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+imptext+"\n")
         with open("History.txt","a") as f:
-            f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
- with open("History.txt","a") as f:
-            f.write("Session Ended.")
+            f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+imptext+"\n")
  print("Thank you for using me sir let me know if you need further information")
 if __name__=="__main__":
    voit = input("Enter 'voice' for voice communication and 'text' for text communication: ").lower()
@@ -122,12 +126,12 @@ if __name__=="__main__":
       speaker.Speak("Hello I am gen1 A I how can i help you")
       voice_response_loop()
       with open("History.txt","a") as f:
-            f.write("Session Ended.")
+            f.write("\n                             ======Session Ended======\n")      
    elif voit =="text":
        print("Hello i am GEN1.A.I how can i help you?")
        text_response_loop()
        with open("History.txt","a") as f:
-            f.write("Session Ended.")
+            f.write("\n                             ======Session Ended======\n")      
    else:
       print("Invalid input.")
    
