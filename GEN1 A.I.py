@@ -1,6 +1,7 @@
 import win32com.client
 import gem
 import time
+import os
 import webbrowser
 import speech_recognition as sr
 r = sr.Recognizer()
@@ -62,6 +63,12 @@ def voice_response_loop():
         speaker.Speak(f"sir the date is {day} {month} {year} ")
         with open("History.txt","a") as f:
             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
+     elif "shutdown system" in query.lower():
+         speaker.speak("System shutting down sir.")
+         os.system("shutdown /s /t 1")
+     elif "Restart system" in query.lower():
+         speaker.speak("System restarting sir")
+         os.system("shutdown /r /t 1")
      else:
         text = (gem.query(query))
         if "." in text:
@@ -109,6 +116,12 @@ def text_response_loop():
             f.write("Output: "+ text)
         with open("History.txt","a") as f:
             f.write("Date:"+date+"\n"+"Time: "+times+"\n"+"Output: "+text+"\n")
+     elif "shutdown system" in query.lower():
+         print("System shutting down sir.")
+         os.system("shutdown /s /t 1")
+     elif "Restart system" in query.lower():
+         print("System restarting sir")
+         os.system("shutdown /r /t 1")
      else:
         text = (gem.query(query))
         if "." in text:
